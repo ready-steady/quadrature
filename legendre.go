@@ -5,7 +5,13 @@ import (
 )
 
 // Legendre computes the Gauss–Legendre rule.
-func Legendre(order uint) (x, w []float64) {
+func Legendre(order uint, a, b float64) (x, w []float64) {
+	x, w = legendre(order)
+	rescale(order, x, w, a, b)
+	return
+}
+
+func legendre(order uint) (x, w []float64) {
 	x = make([]float64, order)
 	w = make([]float64, order)
 
@@ -16,8 +22,8 @@ func Legendre(order uint) (x, w []float64) {
 			(1.0 - (1.0-1.0/float64(order))/float64(8*order*order))
 
 		p, q := x0, 1.0
-		for k := uint(2); k <= order; k++ {
-			p, q = 2.0*x0*p-q-(x0*p-q)/float64(k), p
+		for j := uint(2); j <= order; j++ {
+			p, q = 2.0*x0*p-q-(x0*p-q)/float64(j), p
 		}
 
 		d0 := float64(order) * (q - x0*p)
@@ -50,4 +56,11 @@ func Legendre(order uint) (x, w []float64) {
 	}
 
 	return
+}
+
+func rescale(order uint, x, w []float64, a, b float64) {
+	for i := uint(0); i < order; i++ {
+		x[i] = ((a + b) + (b-a)*x[i]) / 2.0
+		w[i] = (b - a) * w[i] / 2.0
+	}
 }
