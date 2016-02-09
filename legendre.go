@@ -4,6 +4,7 @@ import (
 	"math"
 )
 
+// Legendre computes the Gauss–Legendre rule.
 func Legendre(order uint) (x, w []float64) {
 	x = make([]float64, order)
 	w = make([]float64, order)
