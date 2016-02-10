@@ -1,4 +1,4 @@
-# Quadrature [![Status][status-img]][status-url]
+# Quadrature [![][status-img]][status-url]
 
 The package provides quadrature rules.
 
@@ -12,7 +12,7 @@ The code is based on the work of [John Burkardt][burkardt].
 
 1. Fork the project.
 2. Implement your idea.
-3. Create a pull request.
+3. Open a pull request.
 
 [burkardt]: http://people.sc.fsu.edu/~jburkardt
 
